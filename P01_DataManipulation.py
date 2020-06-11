@@ -9,7 +9,6 @@ Created on Tue Jun  9 19:20:41 2020
 
 ##Importing modules
 import pandas as pd
-import numpy as np
 
 
 ##Read in the data
@@ -46,36 +45,32 @@ for i in range(len(no_use_data)):
 gdp_data.drop(no_use_index, axis = 0, inplace = True)
 fer_data.drop(no_use_index, axis = 0, inplace = True)
 mor_data.drop(no_use_index, axis = 0, inplace = True)
-country_original = gdp_data["Country Name"].tolist()
 
 
 
 ##List of countries that have all data
-a1 = gdp_data.isnull()
-b1 = a1.sum(axis=1) #to see which countries (rows) have null value; "0" = no null value
-c1 = np.where(b1 == 0)[0]
+gdp_data.dropna(axis = 0, inplace = True)
 
-a2 = fer_data.isnull()
-b2 = a2.sum(axis=1)
-c2 = np.where(b2 == 0)[0]
+fer_data.dropna(axis = 0, inplace = True)
 
-a3 = mor_data.isnull()
-b3 = a3.sum(axis=1)
-c3 = np.where(b3 == 0)[0]
+mor_data.dropna(axis = 0, inplace = True)
 
 ##Check if the three lists have the same countries: False means some no null values countries in one data set has null value in other data set
-all(item in c2 for item in c1)
-all(item in c3 for item in c1)
+all(item in fer_data.iloc[:,0] for item in gdp_data.iloc[:,0])
+all(item in mor_data.iloc[:,0] for item in gdp_data.iloc[:,0])
 
 ###Because they all have different values, perform task to take countries they have in common
-test = set(c1).intersection(c2)
-test2 = set(test).intersection(c3)
-test3 = list(test2)
+test = set(gdp_data.iloc[:,0]).intersection(fer_data.iloc[:,0])
+test2 = set(test).intersection(mor_data.iloc[:,0])
+country_nonull = list(test2) #list of countries that does not have any null in three data set
 
-country_nonull = [] #list of countries that does not have any null in three data set
-for i in range(len(test3)):
-    country_nonull.append(gdp_data.iloc[test3[i],0])
-    
+gdp_data.reset_index(drop = True, inplace = True) #reset index
+fer_data.reset_index(drop = True, inplace = True)
+mor_data.reset_index(drop = True, inplace = True)
+
+gdp_country_original = gdp_data["Country Name"].tolist()
+fer_country_original = fer_data["Country Name"].tolist()
+mor_country_original = mor_data["Country Name"].tolist()
 
 ##Based on 'country_nonull' list, seperate countries into 3 groups
 
@@ -84,14 +79,38 @@ core = [] #Core countries requirement: GDP > 200000000000
 semi_peri= [] # Semi periphery countries requirement: GDP  <= 200000000000 and GDP > 250000000000
 peri = [] #Periphery countries requirement: GDP < 250000000000
 
+gdp_total_index = [] #collect index of 'country_nonull' from gdp_data
+fer_total_index = []
+mor_total_index = []
 
 for i in range(len(country_nonull)):
-    x = country_original.index(country_nonull[i])
+    x = gdp_country_original.index(country_nonull[i])
+    y = fer_country_original.index(country_nonull[i])
+    z = mor_country_original.index(country_nonull[i])
+    gdp_total_index.append(x) #utilizing for loop to create 'total_index' list for GDP
+    fer_total_index.append(y)
+    mor_total_index.append(z)
+    
     recent_data = gdp_data.iloc[x,-1]
     if recent_data > 200000000000:
         core.append(country_nonull[i])    
-    if recent_data <= 200000000000 and recent_data > 250000000000:
+    elif recent_data <= 200000000000 and recent_data > 250000000000:
         semi_peri.append(country_nonull[i])
     else:
         peri.append(country_nonull[i])
-                
+        
+        
+        
+##Filter out all data set to have same values
+gdp_data_cleaned = gdp_data.loc[gdp_total_index]
+gdp_data_cleaned.sort_values(axis = 0, by = 'Country Name', inplace = True)
+
+fer_data_cleaned = fer_data.loc[fer_total_index]
+fer_data_cleaned.sort_values(axis = 0, by = 'Country Name', inplace = True)
+
+mor_data_cleaned = mor_data.loc[mor_total_index]
+mor_data_cleaned.sort_values(axis = 0, by = 'Country Name', inplace = True)
+
+
+##Extracting cleaned csv files
+gdp_data_cleaned.to_csv('gdp_data_cleaned.csv', index = False)
