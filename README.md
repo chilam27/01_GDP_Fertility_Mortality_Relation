@@ -48,10 +48,16 @@ As I am doing my research for the data source, I find the page [World Bank Group
 
 ## Author
 
-
+* **Chi Lam**, _student_ at Michigan State University - [chilam27](https://github.com/chilam27)
 
 ## Acknowledgments
 
+* [Pritchard, Adam. "Markdown Cheatsheet."](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [Thompson, Billie. "A template to make good README.md"](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+* [Wikipedia contributors. "List of countries by GDP (nominal)." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Jun. 2020. Web. 13 Jun. 2020.](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_%28nominal%29)
+* [World Population Review. "GDP Ranked by Country 2020."](https://worldpopulationreview.com/countries/countries-by-gdp/)
+* [“machine learning with python video 14 Polynomial Regression.” YouTube, uploaded by 
+I know python, 3 Apr. 2020, www.youtube.com/watch?v=2wzxzHoW-sg&t=381s.](https://www.youtube.com/watch?v=2wzxzHoW-sg&t=381s)
 
 
 
