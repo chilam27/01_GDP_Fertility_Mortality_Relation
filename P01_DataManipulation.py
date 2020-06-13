@@ -13,9 +13,7 @@ import pandas as pd
 
 ##Read in the data
 gdp_data = pd.read_csv('API_NY.GDP.MKTP.CD_DS2_en_excel_v2_1068823.csv', header = None, skiprows = 3)
-
 fer_data = pd.read_csv('API_SP.DYN.TFRT.IN_DS2_en_excel_v2_1068800.csv', header = None, skiprows = 3)
-
 mor_data = pd.read_csv('API_SP.DYN.CDRT.IN_DS2_en_excel_v2_1069297.csv', header = None, skiprows = 3)
 
 
@@ -47,13 +45,11 @@ fer_data.drop(no_use_index, axis = 0, inplace = True)
 mor_data.drop(no_use_index, axis = 0, inplace = True)
 
 
-
 ##List of countries that have all data
 gdp_data.dropna(axis = 0, inplace = True)
-
 fer_data.dropna(axis = 0, inplace = True)
-
 mor_data.dropna(axis = 0, inplace = True)
+
 
 ##Check if the three lists have the same countries: False means some no null values countries in one data set has null value in other data set
 all(item in fer_data.iloc[:,0] for item in gdp_data.iloc[:,0])
@@ -72,12 +68,10 @@ gdp_country_original = gdp_data["Country Name"].tolist()
 fer_country_original = fer_data["Country Name"].tolist()
 mor_country_original = mor_data["Country Name"].tolist()
 
+
 ##Based on 'country_nonull' list, seperate countries into 3 groups
 
-###Create lists for 3 groups
-core = [] #Core countries requirement: GDP > 200000000000
-semi_peri= [] # Semi periphery countries requirement: GDP  <= 200000000000 and GDP > 250000000000
-peri = [] #Periphery countries requirement: GDP < 250000000000
+##Filter out all data set to have same values
 
 gdp_total_index = [] #collect index of 'country_nonull' from gdp_data
 fer_total_index = []
@@ -87,21 +81,10 @@ for i in range(len(country_nonull)):
     x = gdp_country_original.index(country_nonull[i])
     y = fer_country_original.index(country_nonull[i])
     z = mor_country_original.index(country_nonull[i])
-    gdp_total_index.append(x) #utilizing for loop to create 'total_index' list for GDP
+    gdp_total_index.append(x)
     fer_total_index.append(y)
     mor_total_index.append(z)
-    
-    recent_data = gdp_data.iloc[x,-1]
-    if recent_data > 200000000000:
-        core.append(country_nonull[i])    
-    elif recent_data <= 200000000000 and recent_data > 250000000000:
-        semi_peri.append(country_nonull[i])
-    else:
-        peri.append(country_nonull[i])
-        
-        
-        
-##Filter out all data set to have same values
+
 gdp_data_cleaned = gdp_data.loc[gdp_total_index]
 gdp_data_cleaned.sort_values(axis = 0, by = 'Country Name', inplace = True)
 
@@ -114,3 +97,5 @@ mor_data_cleaned.sort_values(axis = 0, by = 'Country Name', inplace = True)
 
 ##Extracting cleaned csv files
 gdp_data_cleaned.to_csv('gdp_data_cleaned.csv', index = False)
+mor_data_cleaned.to_csv('mor_data_cleaned.csv', index = False)
+fer_data_cleaned.to_csv('fer_data_cleaned.csv', index = False)
