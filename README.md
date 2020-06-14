@@ -8,8 +8,6 @@ I stumbled across this question when I was studying in my social science class a
 
 To summarize, a core nation is one that has strong power, both politically and economically (GDP > 1.5 trillions). While the periphery nation is a complete opposite (GDP < 250 billions). Hence, the semi-periphery nation is the one in between the two groups (1.5 trillions >= GDP > 250 billions). 
 
-After learning about the differences between the three types, I started to form my curiosity around whether there are any trends that lead to the differences the way it is.
-
 I finished this project once ([CMSE201_FinalProject.ipynb](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/CMSE201_FinalProject.ipynb), original project file, can be found in this repository). I redid it with added step, such as: data cleaning and exploratory data analysis. I also practiced using `sklearn` package for statistical interpretation and building polynomial regression model.
 
 ## Prerequisites
