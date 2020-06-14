@@ -48,15 +48,30 @@ In this stage, I want to specifcially look at United States and analyze its data
 * Perform polynomial regression model
 * Caculate the MSE and R**2 of the two graphs
 
-(add pictures of graphs)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/us_gdp.png">
+</p>
+
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/us_gdp_fer.png "United States GDP vs. Fertility")
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/us_gdp_mor.png "United States GDP vs. Mortality")
 
 ### Polynomial Regression Model (extended)
 
 * Separate countries into 3 groups: core, semi-periphery, and periphery
-* Randomly choose 5 countries from each group
+* Randomly choose 3 countries from each group
 * Creating a polynomial regression loop function to graph and caculate MSE and R**2
 
-(add pictures of graphs)
+Core Nations             |  Semi-periphery Nations
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/china_poly.png "China")  |  ![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/bel_poly.png "Belgium")
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/can_poly.png "Canada")   |   ![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/pak_poly.png "Pakistan")
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/in__poly.png "India")    |   ![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/nor_poly.png "Norway")
+
+Periphery Nations             | 
+:-------------------------:|
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/mada_poly.png "Madagascar") |
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/por_poly.png "Portugal")   |
+![alt text](https://github.com/chilam27/P01_GDP_Fertility_Mortality_Relation/blob/master/readme_image/hati_poly.png "Hati")  |
 
 ### Overall Model Performance
 
