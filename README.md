@@ -1,4 +1,4 @@
-# A Country GDP Vs. its Fertility and Mortality Rates
+# A Country GDP Vs. Its Fertility and Mortality Rates
 
 I want to see whether there is a relationship between a country GDP and its fertility and mortality rates. I recreated this project from my CMSE class but improved it by apply a fundamental data science project's outline.
 
@@ -6,7 +6,7 @@ I want to see whether there is a relationship between a country GDP and its fert
 
 I stumbled across this question when I was studying in my social science class about the prosperity of different countries. Especially, we looked at three types of nation: core nations, semi-periphery nations, and periphery nations. 
 
-To summarize, a core nation is one that has strong power, both politically and economically (such as the United States). While the periphery nation is a complete opposite. Hence, the semi-periphery nation is the one in between the two groups. 
+To summarize, a core nation is one that has strong power, both politically and economically (GDP > 1.5 trillions). While the periphery nation is a complete opposite (GDP < 250 billions). Hence, the semi-periphery nation is the one in between the two groups (1.5 trillions >= GDP > 250 billions). 
 
 After learning about the differences between the three types, I started to form my curiosity around whether there are any trends that lead to the differences the way it is.
 
@@ -40,15 +40,31 @@ As I am doing my research for the data source, I find the page [World Bank Group
 * Make sure all three dataset (GDP, fertility, and mortality) have the same countries; if not, take countries that all three have in common
 * Extracting cleaned data to new csv files: _gdp_data_cleaned.csv_, _fer_data_cleaned.csv_, _mor_data_cleaned.csv_
 
-### Exploratory data analysis
+### Exploratory Data Analysis
+
+In this stage, I want to specifcially look at United States and analyze its data and trend before applying the math and algorithm to other countries.
+
+* Observe data: using methods, such as: `pandas.DataFrame.columns`, `pandas.DataFrame.describe`, etc.
+* Check for null value or incomplete data
+* Evalutae United States' GDP, fertility and mortality rates trend based on the data given
+* Perform polynomial regression model
+* Caculate the MSE and R**2 of the two graphs
+
+(add pictures of graphs)
+
+### Polynomial Regression Model (extended)
+
+* Separate countries into 3 groups: core, semi-periphery, and periphery
+* Randomly choose 5 countries from each group
+* Creating a polynomial regression loop function to graph and caculate MSE and R**2
+
+(add pictures of graphs)
+
+### Overall Model Performance
 
 
 
-### Polynomial Regression Model
-
-
-
-### Model Performance
+## Conclusion
 
 
 
