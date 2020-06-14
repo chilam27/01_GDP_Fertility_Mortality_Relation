@@ -75,6 +75,11 @@ Periphery Nations             |
 
 ### Overall Model Performance
 
+I use MSE and R**2 to track the overall performance of the polynomial regression to see how good the fit or the estimation is. After collecting data from 3 countries of each group, I find the mean of the statistical analysis:
+| ___                                           |   Mean Squared Error    |   Coefficient of Determination   |
+| --------------------------------------------- |:-----------------------:|:--------------------------------:|
+| Mean of statistics for GDP vs. Fertility      | 0.299                   | 0.734                            |
+| Mean of statistics for GDP vs. Mortality      | 2.197                   | 0.615                            |
 
 
 ## Conclusion
