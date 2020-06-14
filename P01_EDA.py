@@ -34,6 +34,7 @@ gdp_data.isnull().any(axis = 1) #we want to check nulls of rows instead because 
 
 
 #Check for trend: trend of United States data
+Years = np.arange(1960,2019)
 
 ##Find US index
 gdp_country = gdp_data.iloc[:,0].tolist()
@@ -42,12 +43,15 @@ us_index = gdp_country.index('United States')
 
 ##Fertility and Mortality data is similar to GDP data, we can explore it by repeating steps above
 gdp_data.iloc[us_index,4:62].plot()
+plt.title('US GDP from 1960 - 2018')
+plt.ylabel('GDP')
+plt.xlabel('Years')
+
 fer_data.iloc[us_index,4:62].plot()
 mor_data.iloc[us_index,4:62].plot() #from this, we get a general sense that: for US, the higher the GDP, the lower the fer and mor rates
 
 
 #Perform regression: let first examine the data of United States
-Years = np.arange(1960,2019)
 
 ##GDP vs. Fer
 x = gdp_data.iloc[us_index,4:].values.reshape(-1, 1)
@@ -59,7 +63,7 @@ x_poly = poly.fit_transform(x) #transform x from being an independent variable t
 pilreg_y = LinearRegression() #training the dataset
 pilreg_y.fit(x_poly, y)
 
-plt.subplot(211)
+plt.subplot(321)
 plt.scatter(x, y, color = 'r', label = 'Data')
 plt.plot(x, pilreg_y.predict(poly.fit_transform(x)), color = 'b', label = 'Fit')
 plt.title('US GDP Vs. Fertility Rate')
@@ -67,10 +71,10 @@ plt.ylabel('US Fertility Rates')
 plt.xlabel('US GDP')
 plt.legend()
 
-plt.subplot(212)
+plt.subplot(322)
 plt.scatter(Years, y)
 plt.title('US Fertility from 1960 - 2018')
-plt.ylabel('Fertility')
+plt.ylabel('Fertility Rates')
 plt.xlabel('Years')
 plt.show()
 
@@ -81,18 +85,18 @@ z = mor_data.iloc[us_index,4:].values.reshape(-1, 1)
 pilreg_z = LinearRegression()
 pilreg_z.fit(x_poly, z)
 
-plt.subplot(211)
-plt.scatter(x, z, color = 'r')
-plt.plot(x, pilreg_z.predict(poly.fit_transform(x)), color = 'b')
+plt.subplot(321)
+plt.scatter(x, z, color = 'r', label = 'Data')
+plt.plot(x, pilreg_z.predict(poly.fit_transform(x)), color = 'b', label = 'Fit')
 plt.title('US GDP Vs. Mortality Rate')
 plt.ylabel('Mortality Rates')
 plt.xlabel('GDP')
 plt.legend()
 
-plt.subplot(212)
+plt.subplot(322)
 plt.scatter(Years, z)
 plt.title('US Mortality from 1960 - 2018')
-plt.ylabel('Mortality')
+plt.ylabel('Mortality Rates')
 plt.xlabel('Years')
 plt.show()
 
