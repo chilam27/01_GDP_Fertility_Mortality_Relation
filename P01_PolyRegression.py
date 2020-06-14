@@ -38,12 +38,12 @@ for i in range(gdp_data.shape[0]):
         
 
 #Find random countries from core nations and periphery nations
-core_selected = random.sample(core, 5)
-semi_peri_selected = random.sample(semi_peri, 5)
-peri_selected = random.sample(peri, 5)
+core_selected = random.sample(core, 4)
+semi_peri_selected = random.sample(semi_peri, 4)
+peri_selected = random.sample(peri, 4)
 
 
-#Creating polynomial regression loop function: to help repeat the same procedure for 15 different countries (5 countries from each group)
+#Creating polynomial regression loop function: to help repeat the same procedure for 12 different countries (4 countries from each group)
 gdp_country = gdp_data.iloc[:,0].tolist()
 
 def PolyRegressionLoop(country_list):
@@ -66,21 +66,19 @@ def PolyRegressionLoop(country_list):
         print(country_list[i], 'GDP vs. Fertility: MSE =', round(mean_squared_error(y, pilreg_y.predict(poly.fit_transform(x))), 3), ', R2 =', round(r2_score(y, pilreg_y.predict(poly.fit_transform(x))), 3))
         print(country_list[i], 'GDP vs. Mortality: MSE =', round(mean_squared_error(z, pilreg_z.predict(poly.fit_transform(x))), 3), ', R2 =', round(r2_score(z, pilreg_z.predict(poly.fit_transform(x))), 3))
         
-        plt.figure()
+        plt.figure(figsize = (8,7))
         plt.suptitle(country_list[i])
         
-        plt.subplot(2,2,1)
+        plt.subplot(211)
         plt.scatter(x, y, color = 'r', s = 15, label = 'Data')
         plt.plot(x, pilreg_y.predict(poly.fit_transform(x)), color = 'b', label = 'Fit')
-        plt.title('GDP Vs. Fertility Rate')
+        plt.title('GDP Vs. Fertility Rate & GDP Vs. Mortality Rate')
         plt.ylabel('Fertility Rates')
-        plt.xlabel('GDP')
         plt.legend()
             
-        plt.subplot(2,2,2)
+        plt.subplot(212)
         plt.scatter(x, z, color = 'r', s = 15, label = 'Data')
         plt.plot(x, pilreg_z.predict(poly.fit_transform(x)), color = 'b', label = 'Fit')
-        plt.title('GDP Vs. Mortality Rate')
         plt.ylabel('Mortality Rates')
         plt.xlabel('GDP')
         plt.legend()
