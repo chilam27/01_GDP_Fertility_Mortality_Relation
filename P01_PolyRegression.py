@@ -5,9 +5,7 @@ Created on Thu Jun 11 11:15:59 2020
 @author: theon
 """
 
-#Regression Models
-
-##Importing Modules
+#Importing Modules
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import PolynomialFeatures
@@ -18,15 +16,15 @@ import random
 random.seed(1)
 
 
-##Read in the data
+#Read in the data
 gdp_data = pd.read_csv('gdp_data_cleaned.csv')
 fer_data = pd.read_csv('fer_data_cleaned.csv')
 mor_data = pd.read_csv('mor_data_cleaned.csv')
 
 
-##Create lists for 3 groups: Core nations, semi-periphery nations, periphery nations 
+#Create lists for 3 groups: Core nations, semi-periphery nations, periphery nations 
 core = [] #Core countries requirement: GDP > 1500000000000
-semi_peri= [] # Semi periphery countries requirement: GDP <= 1500000000000 and GDP > 250000000000
+semi_peri= [] # Semi periphery countries requirement: 1500000000000 >= GDP > 250000000000
 peri = [] #Periphery countries requirement: GDP < 250000000000
 
 for i in range(gdp_data.shape[0]):
@@ -39,13 +37,13 @@ for i in range(gdp_data.shape[0]):
         peri.append(gdp_data.iloc[i, 0])
         
 
-##Find random countries from core nations and periphery nations
+#Find random countries from core nations and periphery nations
 core_selected = random.sample(core, 5)
 semi_peri_selected = random.sample(semi_peri, 5)
 peri_selected = random.sample(peri, 5)
 
 
-##Creating polynomial regression function: to help repeat the same procedure for 15 different countries (5 countries from each group)
+#Creating polynomial regression loop function: to help repeat the same procedure for 15 different countries (5 countries from each group)
 gdp_country = gdp_data.iloc[:,0].tolist()
 
 def PolyRegressionLoop(country_list):
