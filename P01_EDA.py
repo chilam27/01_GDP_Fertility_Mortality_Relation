@@ -46,6 +46,7 @@ gdp_data.iloc[us_index,4:62].plot()
 plt.title('US GDP from 1960 - 2018')
 plt.ylabel('GDP')
 plt.xlabel('Years')
+plt.show()
 
 fer_data.iloc[us_index,4:62].plot()
 mor_data.iloc[us_index,4:62].plot() #from this, we get a general sense that: for US, the higher the GDP, the lower the fer and mor rates

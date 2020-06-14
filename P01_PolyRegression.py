@@ -38,12 +38,12 @@ for i in range(gdp_data.shape[0]):
         
 
 #Find random countries from core nations and periphery nations
-core_selected = random.sample(core, 4)
-semi_peri_selected = random.sample(semi_peri, 4)
-peri_selected = random.sample(peri, 4)
+core_selected = random.sample(core, 3)
+semi_peri_selected = random.sample(semi_peri, 3)
+peri_selected = random.sample(peri, 3)
 
 
-#Creating polynomial regression loop function: to help repeat the same procedure for 12 different countries (4 countries from each group)
+#Creating polynomial regression loop function: to help repeat the same procedure for 9 different countries (4 countries from each group)
 gdp_country = gdp_data.iloc[:,0].tolist()
 
 def PolyRegressionLoop(country_list):
@@ -66,7 +66,7 @@ def PolyRegressionLoop(country_list):
         print(country_list[i], 'GDP vs. Fertility: MSE =', round(mean_squared_error(y, pilreg_y.predict(poly.fit_transform(x))), 3), ', R2 =', round(r2_score(y, pilreg_y.predict(poly.fit_transform(x))), 3))
         print(country_list[i], 'GDP vs. Mortality: MSE =', round(mean_squared_error(z, pilreg_z.predict(poly.fit_transform(x))), 3), ', R2 =', round(r2_score(z, pilreg_z.predict(poly.fit_transform(x))), 3))
         
-        plt.figure(figsize = (8,7))
+        plt.figure()
         plt.suptitle(country_list[i])
         
         plt.subplot(211)
