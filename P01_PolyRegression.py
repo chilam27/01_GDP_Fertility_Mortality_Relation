@@ -46,6 +46,11 @@ peri_selected = random.sample(peri, 3)
 #Creating polynomial regression loop function: to help repeat the same procedure for 9 different countries (4 countries from each group)
 gdp_country = gdp_data.iloc[:,0].tolist()
 
+mse_gdp_fer = []
+mse_gdp_mor = []
+r_gdp_fer = []
+r_gdp_mor = []
+
 def PolyRegressionLoop(country_list):
     for i in range(len(country_list)):
         country_index = gdp_country.index(country_list[i])
@@ -65,6 +70,11 @@ def PolyRegressionLoop(country_list):
         
         print(country_list[i], 'GDP vs. Fertility: MSE =', round(mean_squared_error(y, pilreg_y.predict(poly.fit_transform(x))), 3), ', R2 =', round(r2_score(y, pilreg_y.predict(poly.fit_transform(x))), 3))
         print(country_list[i], 'GDP vs. Mortality: MSE =', round(mean_squared_error(z, pilreg_z.predict(poly.fit_transform(x))), 3), ', R2 =', round(r2_score(z, pilreg_z.predict(poly.fit_transform(x))), 3))
+        
+        mse_gdp_fer.append(mean_squared_error(y, pilreg_y.predict(poly.fit_transform(x))))
+        mse_gdp_mor.append(mean_squared_error(z, pilreg_z.predict(poly.fit_transform(x))))
+        r_gdp_fer.append(r2_score(y, pilreg_y.predict(poly.fit_transform(x))))
+        r_gdp_mor.append(r2_score(z, pilreg_z.predict(poly.fit_transform(x))))
         
         plt.figure()
         plt.suptitle(country_list[i])
@@ -90,3 +100,10 @@ def PolyRegressionLoop(country_list):
 PolyRegressionLoop(core_selected)
 PolyRegressionLoop(semi_peri_selected)
 PolyRegressionLoop(peri_selected)
+
+
+#Average MSE and R**2
+print('Average of MSE for GDP vs. Fertility:', round(sum(mse_gdp_fer)/ len(mse_gdp_fer), 3))
+print('Average of MSE for GDP vs. Mortality:', round(sum(mse_gdp_mor)/ len(mse_gdp_mor),3))
+print('Average of R**2 for GDP vs. Fertility:', round(sum(r_gdp_fer)/ len(r_gdp_fer),3))
+print('Average of R**2 for GDP vs. Mortality:', round(sum(r_gdp_mor)/ len(r_gdp_mor),3))
