@@ -9,7 +9,6 @@ Created on Thu Jun 11 11:15:59 2020
 
 ##Importing Modules
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
@@ -40,65 +39,6 @@ for i in range(gdp_data.shape[0]):
         peri.append(gdp_data.iloc[i, 0])
         
 
-#Perform regression: let first examine the data of United States
-Years = np.arange(1960,2019)
-
-##Find US index
-gdp_country = gdp_data.iloc[:,0].tolist()
-us_index = gdp_country.index('United States')
-
-
-##US Regression
-
-###GDP vs. Fer
-x = gdp_data.iloc[us_index,4:].values.reshape(-1, 1)
-y = fer_data.iloc[us_index,4:].values.reshape(-1, 1)
-
-poly = PolynomialFeatures(degree = 2)
-x_poly = poly.fit_transform(x) #transform x from being an independent variable to a polynomial curve
-
-pilreg_y = LinearRegression() #training the dataset
-pilreg_y.fit(x_poly, y)
-
-plt.subplot(211)
-plt.scatter(x, y, color = 'r', label = 'Data')
-plt.plot(x, pilreg_y.predict(poly.fit_transform(x)), color = 'b', label = 'Fit')
-plt.title('US GDP Vs. Fertility Rate')
-plt.ylabel('US Fertility Rates')
-plt.xlabel('US GDP')
-plt.legend()
-
-plt.subplot(212)
-plt.scatter(Years, y)
-plt.title('US Fertility from 1960 - 2018')
-plt.ylabel('Fertility')
-plt.xlabel('Years')
-plt.show()
-
-
-###GDP vs. Mor
-z = mor_data.iloc[us_index,4:].values.reshape(-1, 1)
-
-pilreg_z = LinearRegression()
-pilreg_z.fit(x_poly, z)
-
-plt.subplot(211)
-plt.scatter(x, z, color = 'r')
-plt.plot(x, pilreg_z.predict(poly.fit_transform(x)), color = 'b')
-plt.title('US GDP Vs. Mortality Rate')
-plt.ylabel('Mortality Rates')
-plt.xlabel('GDP')
-plt.legend()
-
-
-plt.subplot(212)
-plt.scatter(Years, z)
-plt.title('US Mortality from 1960 - 2018')
-plt.ylabel('Mortality')
-plt.xlabel('Years')
-plt.show()
-
-
 ##Find random countries from core nations and periphery nations
 core_selected = random.sample(core, 5)
 semi_peri_selected = random.sample(semi_peri, 5)
@@ -106,6 +46,8 @@ peri_selected = random.sample(peri, 5)
 
 
 ##Creating polynomial regression function: to help repeat the same procedure for 15 different countries (5 countries from each group)
+gdp_country = gdp_data.iloc[:,0].tolist()
+
 def PolyRegressionLoop(country_list):
     for i in range(len(country_list)):
         country_index = gdp_country.index(country_list[i])
