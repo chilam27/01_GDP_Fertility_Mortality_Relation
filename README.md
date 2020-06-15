@@ -57,8 +57,8 @@ In this stage, I want to specifcially look at United States and analyze its data
 
 ### Polynomial Regression Model (extended)
 
-* Separate countries into 3 groups: core, semi-periphery, and periphery
-* Randomly choose 3 countries from each group
+* Separate countries into three groups: core, semi-periphery, and periphery
+* Randomly choose three countries from each group
 * Creating a polynomial regression loop function to graph and caculate MSE and R**2
 
 Core Nations             |  Semi-periphery Nations
@@ -84,7 +84,13 @@ I use MSE and R**2 to track the overall performance of the polynomial regression
 
 ## Conclusion
 
+After having my cleaned data files that are ready to be analyzed, in the EDA stage, I applied the polynomial regression onto United States data. The trend of data shows that, as the GDP increases and the rates of fertility and mortality decrease over time, there seems to be a relationship between GDP and the rates. After running 2nd degree polynomial regression, the fitted line fitted the data quite well: with MDE of GDP vs. Fertility being 0.157 and GDP vs. Mortality being 0.054; with R**2 of GDP vs. Fertility being 0.285 and GDP vs. Mortality being 0.752. 
 
+Although I cound not find out the reason for metrics for the first relationship to be low, I also analyzed nine more countries from the three groups: core, semi-periphery and periphery. The reason I picked three countries was that I wanted to eliminate bias. After applying the regression model and applying the metrics (can be found in the _Overall Model Performance_), most values proof the trend strongly. Except for MSE of GDP vs. Mortality: China and Portugal have large outliers that raise the mean.
+
+It is clear to us that the statement "The higher the GDP is, the lower rates of fertility and mortality are for that country" is true.
+
+_If I would redo this project again, there are two things I would change. First, I want to be more apply one more layer of selection to decrease the bias in data. I have only eliminated bias by picking countries from each group. I can add another layer by picking countries from each continent. Second, I want to apply the regression model to more countries than just three. This is to strengthen the conclusion of proofing the statement above is true._
 
 ## Author
 
@@ -94,6 +100,7 @@ I use MSE and R**2 to track the overall performance of the polynomial regression
 
 * [Pritchard, Adam. "Markdown Cheatsheet."](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 * [Thompson, Billie. "A template to make good README.md"](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+* [Wells, David. "aligning-images.md"](https://gist.github.com/DavidWells/7d2e0e1bc78f4ac59a123ddf8b74932d)
 * [Wikipedia contributors. "List of countries by GDP (nominal)." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Jun. 2020. Web. 13 Jun. 2020.](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_%28nominal%29)
 * [World Population Review. "GDP Ranked by Country 2020."](https://worldpopulationreview.com/countries/countries-by-gdp/)
 * [“machine learning with python video 14 Polynomial Regression.” YouTube, uploaded by 
